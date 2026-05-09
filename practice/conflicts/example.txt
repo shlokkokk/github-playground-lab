@@ -1,1 +1,1 @@
-"Version from branch A" 
+Version from branch A and branch B
