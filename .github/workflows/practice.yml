@@ -1,0 +1,21 @@
+name: Lab 8 Actions Practice
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  inspect-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print run context
+        run: |
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Branch/Ref: ${{ github.ref }}"
+
+      - name: List repository files
+        run: ls -la
