@@ -184,7 +184,7 @@ git log --oneline --graph --decorate
 
 - `git checkout -b <branch-name>`  
   older command that does the same create-and-switch action.  
-  use this if you are on older Git versions (before Git 2.23) or tutorials that still use `checkout`.
+  use this if you are on older Git versions (before Git 2.23, released in 2019) or tutorials that still use `checkout`.
 
 - `git add .`  
   stages your local file changes for the next commit.
@@ -335,7 +335,9 @@ git push origin main
 - branch is focused on one topic
 - commits are readable and grouped logically
 - PR description explains what + why
-- issue is linked (`Closes #<number>`, `Fixes #<number>`, or `Resolves #<number>` when applicable; see `practice/issue-close.txt`)
+- issue is linked in PR text
+  - use `Closes #<number>`, `Fixes #<number>`, or `Resolves #<number>`
+  - see `practice/issue-close.txt` for practice examples
 - branch is up to date with `main`
 
 ---
@@ -1196,6 +1198,10 @@ if you intentionally rebased your own branch:
 git push --force-with-lease
 ```
 
+warning:
+- `--force-with-lease` is safer than `--force`, but it still rewrites remote history
+- use it only on your own branch and coordinate before using it on any shared branch
+
 ### Case 3: committed to wrong branch
 
 quick safe fix (keep work, move it):
@@ -1216,7 +1222,8 @@ git commit --amend -m "docs: corrected message"
 ```
 
 if already pushed:
-- amend + `--force-with-lease` only if branch is yours and not shared.
+- this rewrites remote history when you push the amended commit
+- use amend + `--force-with-lease` only if branch is yours and not shared
 
 ### Case 5: accidentally staged too much
 
