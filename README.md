@@ -184,7 +184,7 @@ git log --oneline --graph --decorate
 
 - `git checkout -b <branch-name>`  
   older command that does the same create-and-switch action.  
-  use this if you are on older Git versions or tutorials that still use `checkout`.
+  use this if you are on older Git versions (before Git 2.23) or tutorials that still use `checkout`.
 
 - `git add .`  
   stages your local file changes for the next commit.
@@ -194,7 +194,7 @@ git log --oneline --graph --decorate
 
 - `git push -u origin <branch-name>`  
   pushes your local branch to GitHub **and** sets an upstream link.
-  - `-u` means `--set-upstream`
+  - `-u` is short for `--set-upstream` (same option)
   - this tells Git: "this local branch tracks `origin/<branch-name>`"
   - after this first push, you can usually run just `git push` and `git pull`
   - if you skip `-u`, the push can still work, but later `git push`/`git pull` may ask you to specify branch + remote explicitly
@@ -280,7 +280,7 @@ git branch -vv
 
 - use **merge** when you want explicit branch history and safer team flow.
 - use **rebase** when you want linear history and are rewriting only your own branch.
-- avoid rebasing shared/public branches unless your team explicitly agrees.
+- never rebase shared/public branches unless all collaborators explicitly agree and understand the impact.
 
 ### 4) Commit message pattern
 
@@ -335,7 +335,7 @@ git push origin main
 - branch is focused on one topic
 - commits are readable and grouped logically
 - PR description explains what + why
-- issue is linked (`Closes #<number>` when applicable)
+- issue is linked (`Closes #<number>`, `Fixes #<number>`, or `Resolves #<number>` when applicable)
 - branch is up to date with `main`
 
 ---
