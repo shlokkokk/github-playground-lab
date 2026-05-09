@@ -73,7 +73,7 @@ By the end of this lab, you should understand:
 
 ## Recommended setup
 
-## 1. Create your accounts
+### 1. Create your accounts
 
 You need:
 
@@ -82,7 +82,7 @@ You need:
 
 You only need the second account for the later labs.
 
-## 2. Keep the accounts separate
+### 2. Keep the accounts separate
 
 Best options:
 
@@ -92,7 +92,7 @@ Best options:
 
 This makes it much easier to stay logged into the correct account.
 
-## 3. Clone the repository locally
+### 3. Clone the repository locally
 
 Clone with your main account first:
 
@@ -101,7 +101,7 @@ git clone https://github.com/<your-main-account>/github-playground-lab.git
 cd github-playground-lab
 ```
 
-## 4. Set your Git identity
+### 4. Set your Git identity
 
 For your maintainer clone:
 
@@ -124,7 +124,7 @@ git config user.name
 git config user.email
 ```
 
-## 5. Learn the commands you will use a lot
+### 5. Learn the commands you will use a lot
 
 ```bash
 git status
@@ -169,7 +169,7 @@ Follow this order for the best learning flow:
 
 ## Beginner labs
 
-## Lab 1: Make your first commit
+### Lab 1: Make your first commit
 
 ### Goal
 
@@ -227,7 +227,7 @@ If you prefer safer practice, create a branch first and push that instead.
 
 ---
 
-## Lab 2: Create a branch
+### Lab 2: Create a branch
 
 ### Goal
 
@@ -280,7 +280,7 @@ git push -u origin feat/branch-practice
 
 ---
 
-## Lab 3: Merge a branch
+### Lab 3: Merge a branch
 
 ### Goal
 
@@ -328,7 +328,7 @@ git push origin --delete feat/branch-practice
 
 ---
 
-## Lab 4: Open a pull request
+### Lab 4: Open a pull request
 
 ### Goal
 
@@ -378,7 +378,7 @@ git push -u origin docs/pr-practice
 
 ---
 
-## Lab 5: Create an issue
+### Lab 5: Create an issue
 
 ### Goal
 
@@ -408,7 +408,7 @@ Learn how work is tracked before coding starts.
 
 ---
 
-## Lab 6: Assign an issue
+### Lab 6: Assign an issue
 
 ### Goal
 
@@ -440,7 +440,7 @@ Use this when both accounts have access to the repo.
 
 ---
 
-## Lab 7: Close an issue via PR
+### Lab 7: Close an issue via PR
 
 ### Goal
 
@@ -491,7 +491,7 @@ Closes #12
 
 ## Intermediate labs
 
-## Lab 8: Use GitHub Actions
+### Lab 8: Use GitHub Actions
 
 ### Goal
 
@@ -547,7 +547,7 @@ git switch -c ci/first-workflow
 
 ---
 
-## Lab 9: Create a merge conflict
+### Lab 9: Create a merge conflict
 
 ### Goal
 
@@ -617,7 +617,7 @@ git merge conflict/branch-b
 
 ---
 
-## Lab 10: Resolve a conflict
+### Lab 10: Resolve a conflict
 
 ### Goal
 
@@ -683,7 +683,7 @@ git push origin main
 
 ## Advanced labs
 
-## Lab 11: Rebase a branch
+### Lab 11: Rebase a branch
 
 ### Goal
 
@@ -760,7 +760,7 @@ git push --force-with-lease origin feat/rebase-practice
 
 ---
 
-## Lab 12: Create a release
+### Lab 12: Create a release
 
 ### Goal
 
@@ -819,7 +819,7 @@ Use:
 - **Main account** as the maintainer
 - **Second account** as the outside contributor
 
-## Lab 13: Simulate an open-source contribution from a second account
+### Lab 13: Simulate an open-source contribution from a second account
 
 ### Goal
 
