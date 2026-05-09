@@ -209,7 +209,7 @@ git log --oneline --graph --decorate
 
 - `git switch` is focused only on branch switching/creation and is easier for beginners.
 - `git checkout` is older and does multiple jobs (switch branches + restore files), so it can feel confusing.
-- in this lab we mostly use `git switch` for clarity, but knowing both helps when reading older docs or teams using older Git habits.
+- In this lab we mostly use `git switch` for clarity, but knowing both helps when reading older docs or teams using older Git habits.
 
 ---
 
@@ -284,7 +284,7 @@ git branch -vv
 
 ### 4) Commit message pattern
 
-recommended style in this repo:
+Recommended style in this repo:
 
 ```text
 docs: update lab instructions
@@ -301,22 +301,22 @@ fix: correct broken command example
 
 ### 6) Fast command syntax reference
 
-- inspect:
+- Inspect:
   - `git status`
   - `git log --oneline --graph --decorate --all`
   - `git diff`
   - `git diff --staged`
-- undo local unstaged edits:
+- Undo local unstaged edits:
   - `git restore <file>`
-- unstage a file:
+- Unstage a file:
   - `git restore --staged <file>`
-- amend last commit message/content:
+- Amend last commit message/content:
   - `git commit --amend`
-- create tag:
+- Create tag:
   - `git tag -a vX.Y.Z -m "message"`
-- remove local branch:
+- Remove local branch:
   - `git branch -d <branch>`
-- remove remote branch:
+- Remove remote branch:
   - `git push origin --delete <branch>`
 
 ### 7) Remote patterns for fork workflows
