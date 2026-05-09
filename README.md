@@ -24,14 +24,18 @@ Use it to practice:
 
 1. [How to use this repo](#how-to-use-this-repo)
 2. [What you will learn](#what-you-will-learn)
-3. [Recommended setup](#recommended-setup)
-4. [Practice order](#practice-order)
-5. [Beginner labs](#beginner-labs)
-6. [Intermediate labs](#intermediate-labs)
-7. [Advanced labs](#advanced-labs)
-8. [Two-account open-source simulation](#two-account-open-source-simulation)
-9. [Bonus practice ideas](#bonus-practice-ideas)
-10. [Reset and repeat](#reset-and-repeat)
+3. [Repository map (full repo tour)](#repository-map-full-repo-tour)
+4. [Recommended setup](#recommended-setup)
+5. [Git + GitHub school: syntax and command patterns](#git--github-school-syntax-and-command-patterns)
+6. [Practice order](#practice-order)
+7. [Beginner labs](#beginner-labs)
+8. [Intermediate labs](#intermediate-labs)
+9. [Advanced labs](#advanced-labs)
+10. [Two-account open-source simulation](#two-account-open-source-simulation)
+11. [Edge cases + recovery playbook](#edge-cases--recovery-playbook)
+12. [Bonus practice ideas](#bonus-practice-ideas)
+13. [Reset and repeat](#reset-and-repeat)
+14. [Final goal](#final-goal)
 
 ---
 
@@ -68,6 +72,35 @@ By the end of this lab, you should understand:
 - how releases and tags are created
 - how GitHub Actions runs automation
 - how maintainers and contributors collaborate across 2 accounts
+
+---
+
+## Repository map (full repo tour)
+
+Use this section like a "where to learn what" index.
+
+- `README.md`  
+  full step-by-step curriculum (this file).
+
+- `CONTRIBUTING.md`  
+  contribution rules, branch naming, commit style, PR checklist, review expectations.
+
+- `CHANGELOG.md`  
+  what changed in the lab over time.
+
+- `TODO.md`  
+  roadmap of future exercises.
+
+- `practice/`  
+  files used to create safe, repeatable Git changes.
+  - `practice/first-commit.txt` for first-commit drills
+  - `practice/branch-practice.txt` for branch labs
+  - `practice/pr-practice.txt` for pull request labs
+  - `practice/issue-close.txt` for issue-closing keyword practice
+  - `practice/conflicts/example.txt` for merge conflict practice
+
+- `.github/workflows/practice.yml`  
+  GitHub Actions practice workflow used in Lab 8.
 
 ---
 
@@ -177,6 +210,133 @@ git log --oneline --graph --decorate
 - `git switch` is focused only on branch switching/creation and is easier for beginners.
 - `git checkout` is older and does multiple jobs (switch branches + restore files), so it can feel confusing.
 - in this lab we mostly use `git switch` for clarity, but knowing both helps when reading older docs or teams using older Git habits.
+
+---
+
+## Git + GitHub school: syntax and command patterns
+
+This section is your "full syntax + when to use what" reference.
+
+### 1) Branch lifecycle patterns
+
+Create and move to a new branch:
+
+```bash
+git switch -c <type>/<short-name>
+# or
+git checkout -b <type>/<short-name>
+```
+
+Publish the branch and set tracking:
+
+```bash
+git push -u origin <type>/<short-name>
+```
+
+Daily work loop on that branch:
+
+```bash
+git status
+git add <file-or-dir>
+git commit -m "docs: describe change"
+git push
+```
+
+Bring latest main into your branch:
+
+```bash
+git fetch origin
+git rebase origin/main
+# or: git merge origin/main
+```
+
+### 2) Safe push/pull patterns
+
+first push of a branch:
+
+```bash
+git push -u origin <branch>
+```
+
+later pushes:
+
+```bash
+git push
+```
+
+if branch has no upstream:
+
+```bash
+git branch --set-upstream-to=origin/<branch> <branch>
+```
+
+check tracking setup:
+
+```bash
+git branch -vv
+```
+
+### 3) Merge vs rebase decision guide
+
+- use **merge** when you want explicit branch history and safer team flow.
+- use **rebase** when you want linear history and are rewriting only your own branch.
+- avoid rebasing shared/public branches unless your team explicitly agrees.
+
+### 4) Commit message pattern
+
+recommended style in this repo:
+
+```text
+docs: update lab instructions
+feat: add new practice track
+fix: correct broken command example
+```
+
+### 5) File state model (must know)
+
+- **working tree** = your edited files
+- **staging area** = what will go into next commit (`git add`)
+- **local repository** = commits in your clone (`git commit`)
+- **remote repository** = commits on GitHub (`git push`)
+
+### 6) Fast command syntax reference
+
+- inspect:
+  - `git status`
+  - `git log --oneline --graph --decorate --all`
+  - `git diff`
+  - `git diff --staged`
+- undo local unstaged edits:
+  - `git restore <file>`
+- unstage a file:
+  - `git restore --staged <file>`
+- amend last commit message/content:
+  - `git commit --amend`
+- create tag:
+  - `git tag -a vX.Y.Z -m "message"`
+- remove local branch:
+  - `git branch -d <branch>`
+- remove remote branch:
+  - `git push origin --delete <branch>`
+
+### 7) Remote patterns for fork workflows
+
+```bash
+git remote -v
+git remote add upstream https://github.com/<owner>/github-playground-lab.git
+git fetch upstream
+git switch main
+git merge upstream/main
+git push origin main
+```
+
+### 8) Before opening any PR (quality checklist)
+
+- branch is focused on one topic
+- commits are readable and grouped logically
+- PR description explains what + why
+- issue is linked (`Closes #<number>` when applicable)
+- branch is up to date with `main`
 
 ---
 
@@ -998,6 +1158,175 @@ git push origin main
 - [ ] Open 2 contributor PRs from the second account
 - [ ] Ask the maintainer account to request changes on one of them
 - [ ] Close one PR without merging
+
+---
+
+## Edge cases + recovery playbook
+
+Use this section when something goes wrong. these are the most common "real world" cases.
+
+### Case 1: `git push` says no upstream branch
+
+why:
+- branch was never pushed with tracking
+
+fix:
+
+```bash
+git push -u origin <current-branch>
+```
+
+### Case 2: `non-fast-forward` push rejected
+
+why:
+- remote branch has commits you do not have locally
+
+fix:
+
+```bash
+git fetch origin
+git rebase origin/<branch>
+# resolve conflicts if any
+git push
+```
+
+if you intentionally rebased your own branch:
+
+```bash
+git push --force-with-lease
+```
+
+### Case 3: committed to wrong branch
+
+quick safe fix (keep work, move it):
+
+```bash
+git switch -c <correct-branch>
+git push -u origin <correct-branch>
+```
+
+if you must clean `main`, use `git revert <commit>` instead of rewriting shared history.
+
+### Case 4: wrong commit message
+
+for latest commit only:
+
+```bash
+git commit --amend -m "docs: corrected message"
+```
+
+if already pushed:
+- amend + `--force-with-lease` only if branch is yours and not shared.
+
+### Case 5: accidentally staged too much
+
+```bash
+git restore --staged .
+git add <only-what-you-want>
+```
+
+### Case 6: merge conflict during merge/rebase
+
+flow:
+1. run `git status`
+2. edit conflicted files and remove markers
+3. run `git add <file>`
+4. continue:
+   - merge flow: `git commit`
+   - rebase flow: `git rebase --continue`
+
+abort when needed:
+
+```bash
+git merge --abort
+git rebase --abort
+```
+
+### Case 7: detached HEAD confusion
+
+symptom:
+- `git status` shows `HEAD detached at ...`
+
+fix:
+
+```bash
+git switch -c rescue/<name>
+```
+
+this keeps your commits by attaching them to a branch.
+
+### Case 8: PR shows too many unrelated commits
+
+usually caused by wrong base branch or stale branch history.
+
+fix:
+1. confirm PR base = `main` (or intended target)
+2. sync branch:
+   - `git fetch origin`
+   - `git rebase origin/main` (or merge)
+3. push updates
+
+### Case 9: branch deleted on remote but still local
+
+```bash
+git fetch --prune
+git branch -vv
+```
+
+then delete stale local branches:
+
+```bash
+git branch -d <stale-branch>
+```
+
+### Case 10: secret accidentally committed
+
+immediate actions:
+1. rotate/revoke the secret first (outside Git)
+2. inform maintainers
+3. remove secret from files
+4. if already pushed/shared, history cleanup may be required with maintainer coordination
+
+### Case 11: cannot pull because of local uncommitted changes
+
+options:
+
+```bash
+# option A: commit
+git add .
+git commit -m "wip: save local work"
+
+# option B: stash
+git stash push -m "temp"
+git pull
+git stash pop
+```
+
+### Case 12: undoing mistakes safely (quick matrix)
+
+- undo unstaged edits: `git restore <file>`
+- unstage file: `git restore --staged <file>`
+- make a reverse commit: `git revert <commit>`
+- move branch pointer locally (advanced): `git reset --soft|--mixed|--hard <target>`
+
+> safety rule: prefer `revert` on shared branches; use `reset` mostly on local/private branches.
+
+### Case 13: GitHub UI edge cases
+
+- cannot merge PR:
+  - check required reviews / status checks / branch protection
+- cannot assign issue:
+  - verify repository permissions and access level
+- workflow did not run:
+  - verify trigger (`push`, `pull_request`, `workflow_dispatch`)
+  - check branch/path filters in workflow yaml
+
+### Case 14: naming and branch hygiene edge cases
+
+- avoid spaces and uppercase in branch names
+- use clear prefixes:
+  - `docs/...`, `feat/...`, `fix/...`, `ci/...`
+- delete merged branches to keep history readable
 
 ---
 
