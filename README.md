@@ -502,14 +502,15 @@ Learn how GitHub automation runs on pushes and pull requests.
 If this repo already has a workflow:
 
 1. Open the **Actions** tab.
-2. Click any workflow run.
-3. Inspect:
+2. Open the `Lab 8 Actions Practice` workflow.
+3. Click any workflow run.
+4. Inspect:
    - event type
    - branch
    - jobs
    - steps
    - logs
-4. Re-run the workflow if GitHub allows it.
+5. Re-run the workflow if GitHub allows it.
 
 ### Create-your-own workflow path
 
