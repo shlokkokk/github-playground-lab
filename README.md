@@ -335,7 +335,7 @@ git push origin main
 - branch is focused on one topic
 - commits are readable and grouped logically
 - PR description explains what + why
-- issue is linked (`Closes #<number>`, `Fixes #<number>`, or `Resolves #<number>` when applicable)
+- issue is linked (`Closes #<number>`, `Fixes #<number>`, or `Resolves #<number>` when applicable; see `practice/issue-close.txt`)
 - branch is up to date with `main`
 
 ---
