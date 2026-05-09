@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 - Issue and PR templates
 - Basic GitHub Actions CI workflows
 
+### Changed
+- Fully rewrote `README.md` into a step-by-step Git and GitHub learning lab with beginner to advanced exercises and a two-account open-source simulation guide
+
 ## [0.1.0] - 2026-05-09
 
 ### Added
