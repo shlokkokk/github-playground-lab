@@ -163,7 +163,7 @@ git config user.email
 git status
 git branch
 git switch -c <branch-name>
-git checkout -b <branch-name>
+git checkout -b <branch-name> # older alternative
 git add .
 git commit -m "your message"
 git push -u origin <branch-name>
@@ -184,7 +184,7 @@ git log --oneline --graph --decorate
 
 - `git checkout -b <branch-name>`  
   older command that does the same create-and-switch action.  
-  use this if you are on older Git versions (before Git 2.23) or tutorials that still use `checkout`.
+  use this if you are on older Git versions (before Git 2.23) or tutorials not updated to `git switch`.
 
 - `git add .`  
   stages your local file changes for the next commit.
@@ -280,7 +280,8 @@ git branch -vv
 
 - use **merge** when you want explicit branch history and safer team flow.
 - use **rebase** when you want linear history and are rewriting only your own branch.
-- never rebase shared/public branches unless all collaborators explicitly agree and understand the impact.
+- do not rebase shared/public branches.
+- in rare cases where it is required, proceed only if all collaborators explicitly agree and understand the impact.
 
 ### 4) Commit message pattern
 
@@ -1199,7 +1200,7 @@ git push --force-with-lease
 ```
 
 warning:
-- `--force-with-lease` is safer than `--force` because it checks remote state before overwrite, but it still rewrites remote history
+- `--force-with-lease` is safer than `--force` because it checks that the remote branch has not changed since your last fetch, but it still rewrites remote history
 - use it only on your own branch and coordinate before using it on any shared branch
 
 ### Case 3: committed to wrong branch
