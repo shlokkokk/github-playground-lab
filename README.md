@@ -130,12 +130,53 @@ git config user.email
 git status
 git branch
 git switch -c <branch-name>
+git checkout -b <branch-name>
 git add .
 git commit -m "your message"
 git push -u origin <branch-name>
 git pull origin main
 git log --oneline --graph --decorate
 ```
+
+### Command meaning (quick but complete)
+
+- `git status`  
+  shows what changed, what is staged, and what branch you are on.
+
+- `git branch`  
+  lists local branches. the `*` mark shows your current branch.
+
+- `git switch -c <branch-name>`  
+  creates a new branch and moves you to it.
+
+- `git checkout -b <branch-name>`  
+  older command that does the same create-and-switch action.  
+  use this if you are on older Git versions or tutorials that still use `checkout`.
+
+- `git add .`  
+  stages your local file changes for the next commit.
+
+- `git commit -m "your message"`  
+  creates a local snapshot of staged changes.
+
+- `git push -u origin <branch-name>`  
+  pushes your local branch to GitHub **and** sets an upstream link.
+  - `-u` means `--set-upstream`
+  - this tells Git: "this local branch tracks `origin/<branch-name>`"
+  - after this first push, you can usually run just `git push` and `git pull`
+  - if you skip `-u`, the push can still work, but later `git push`/`git pull` may ask you to specify branch + remote explicitly
+
+- `git pull origin main`  
+  fetches latest `main` from GitHub and merges it into your current branch.
+
+- `git log --oneline --graph --decorate`  
+  shows short commit history with branch/tag pointers and graph view.
+
+### `git switch` vs `git checkout` (important)
+
+- `git switch` is focused only on branch switching/creation and is easier for beginners.
+- `git checkout` is older and does multiple jobs (switch branches + restore files), so it can feel confusing.
+- in this lab we mostly use `git switch` for clarity, but knowing both helps when reading older docs or teams using older Git habits.
 
 ---
 
