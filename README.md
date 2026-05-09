@@ -1163,7 +1163,7 @@ git push origin main
 
 ## Edge cases + recovery playbook
 
-Use this section when something goes wrong. these are the most common "real world" cases.
+Use this section when something goes wrong. These are the most common "real world" cases.
 
 ### Case 1: `git push` says no upstream branch
 
@@ -1253,7 +1253,7 @@ fix:
 git switch -c rescue/<name>
 ```
 
-this keeps your commits by attaching them to a branch.
+This keeps your commits by attaching them to a branch.
 
 ### Case 8: PR shows too many unrelated commits
 
