@@ -171,7 +171,7 @@ git pull origin main
 git log --oneline --graph --decorate
 ```
 
-### Command meaning (quick but complete)
+### Command meanings
 
 - `git status`  
   shows what changed, what is staged, and what branch you are on.
@@ -205,7 +205,7 @@ git log --oneline --graph --decorate
 - `git log --oneline --graph --decorate`  
   shows short commit history with branch/tag pointers and graph view.
 
-### `git switch` vs `git checkout` (important)
+### `git switch` vs `git checkout`
 
 - `git switch` is focused only on branch switching/creation and is easier for beginners.
 - `git checkout` is older and does multiple jobs (switch branches + restore files), so it can feel confusing.
@@ -292,7 +292,7 @@ feat: add new practice track
 fix: correct broken command example
 ```
 
-### 5) File state model (must know)
+### 5) File state model
 
 - **working tree** = your edited files
 - **staging area** = what will go into next commit (`git add`)
