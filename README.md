@@ -93,11 +93,11 @@ Use this section like a "where to learn what" index.
 
 - `practice/`  
   files used to create safe, repeatable Git changes.
-  - `practice/first-commit.txt` for first-commit drills
-  - `practice/branch-practice.txt` for branch labs
-  - `practice/pr-practice.txt` for pull request labs
-  - `practice/issue-close.txt` for issue-closing keyword practice
-  - `practice/conflicts/example.txt` for merge conflict practice
+    - `practice/first-commit.txt` for first-commit drills
+    - `practice/branch-practice.txt` for branch labs
+    - `practice/pr-practice.txt` for pull request labs
+    - `practice/issue-close.txt` for issue-closing keyword practice
+    - `practice/conflicts/example.txt` for merge conflict practice
 
 - `.github/workflows/practice.yml`  
   GitHub Actions practice workflow used in Lab 8.
@@ -184,7 +184,7 @@ git log --oneline --graph --decorate
 
 - `git checkout -b <branch-name>`  
   older command that does the same create-and-switch action.  
-  use this if you are on older Git versions (before Git 2.23) or tutorials not updated to `git switch`.
+  use this if your Git version is older than 2.23 or when following tutorials that have not updated to `git switch`.
 
 - `git add .`  
   stages your local file changes for the next commit.
@@ -280,8 +280,8 @@ git branch -vv
 
 - use **merge** when you want explicit branch history and safer team flow.
 - use **rebase** when you want linear history and are rewriting only your own branch.
-- do not rebase shared/public branches.
-- in rare cases where it is required, proceed only if all collaborators explicitly agree and understand the impact.
+- avoid rebasing shared/public branches.
+- if rebasing a shared branch is unavoidable, proceed only when all collaborators explicitly agree and understand the impact.
 
 ### 4) Commit message pattern
 
