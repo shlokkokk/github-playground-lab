@@ -252,25 +252,25 @@ git rebase origin/main
 
 ### 2) Safe push/pull patterns
 
-first push of a branch:
+First push of a branch:
 
 ```bash
 git push -u origin <branch>
 ```
 
-later pushes:
+Later pushes:
 
 ```bash
 git push
 ```
 
-if branch has no upstream:
+If branch has no upstream:
 
 ```bash
 git branch --set-upstream-to=origin/<branch> <branch>
 ```
 
-check tracking setup:
+Check tracking setup:
 
 ```bash
 git branch -vv
