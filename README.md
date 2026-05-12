@@ -34,8 +34,9 @@ Use it to practice:
 10. [Two-account open-source simulation](#two-account-open-source-simulation)
 11. [Edge cases + recovery playbook](#edge-cases--recovery-playbook)
 12. [Bonus practice ideas](#bonus-practice-ideas)
-13. [Reset and repeat](#reset-and-repeat)
-14. [Final goal](#final-goal)
+13. [Maintainer reset playbook (handoff-ready)](#maintainer-reset-playbook-handoff-ready)
+14. [Reset and repeat](#reset-and-repeat)
+15. [Final goal](#final-goal)
 
 ---
 
@@ -1351,6 +1352,161 @@ If you finish everything above, try these too:
 - [ ] write a better `CONTRIBUTING.md`
 - [ ] create a PR template
 - [ ] practice reviewing code from the second account
+
+---
+
+## Maintainer reset playbook (handoff-ready)
+
+Use this when you want the repository to feel fresh for the next learner.
+
+### 1) Protect the baseline first
+
+Before deleting anything, make sure `main` contains only what should stay as the learning baseline:
+
+```bash
+git switch main
+git pull origin main
+git status
+```
+
+If `git status` is not clean, decide whether to commit, stash, or discard local changes before cleanup.
+
+### 2) Remove trial/practice noise from files
+
+This repo should keep only reusable lab starter files in `practice/`.
+
+Check tracked changes:
+
+```bash
+git status
+git diff --name-only
+```
+
+Check untracked files:
+
+```bash
+git ls-files --others --exclude-standard
+```
+
+Remove accidental files and commit the cleanup:
+
+```bash
+git rm <tracked-trial-file>
+rm <untracked-trial-file>
+git add .
+git commit -m "chore: clean trial artifacts for fresh practice state"
+git push origin main
+```
+
+### 3) Branch cleanup matrix (all common scenarios)
+
+List branches:
+
+```bash
+git branch
+git branch -r
+git branch -a
+```
+
+#### A. Branch already merged to main
+
+Safe delete:
+
+```bash
+git branch -d <branch-name>
+git push origin --delete <branch-name>
+```
+
+#### B. Branch not merged but no longer needed
+
+Force delete (only when you intentionally want to drop that work):
+
+```bash
+git branch -D <branch-name>
+git push origin --delete <branch-name>
+```
+
+#### C. Remote branch already deleted, local branch still exists
+
+```bash
+git fetch --prune
+git branch -vv
+git branch -d <stale-local-branch>
+```
+
+#### D. You cannot delete a branch
+
+Common reasons:
+- branch is the default branch
+- branch is protected by repository rules
+- open PR still depends on that branch
+
+Fix path:
+1. change default branch only if truly intended
+2. merge or close dependent PRs
+3. update protection/rules if cleanup is approved
+4. retry deletion
+
+### 4) PR cleanup for a fresh learner queue
+
+- merge or close old trial PRs
+- ensure no stale draft PRs remain
+- delete head branches after merge
+- keep one example PR only if you intentionally want a reference
+
+### 5) Issue cleanup options
+
+Choose one approach:
+- keep all issues as historical examples
+- close resolved trial issues with a clear final comment
+- apply labels like `practice`, `archived`, `example`
+
+Do not silently delete context; leave a short reason when closing.
+
+### 6) Tag/release cleanup (if practice tags were created)
+
+List tags and releases:
+
+```bash
+git tag
+```
+
+If trial tags should be removed:
+
+```bash
+git tag -d <tag>
+git push origin :refs/tags/<tag>
+```
+
+Also remove test releases from the GitHub Releases UI if they are only practice artifacts.
+
+### 7) Final verification checklist before handoff
+
+- [ ] `main` is clean and up to date
+- [ ] no accidental files remain under `practice/`
+- [ ] merged/unneeded branches are deleted
+- [ ] stale remote-tracking refs are pruned
+- [ ] old trial PRs are merged/closed
+- [ ] issue state is intentionally organized
+- [ ] trial tags/releases are removed (if any)
+- [ ] README, CONTRIBUTING, and TODO reflect current repo behavior
+
+### 8) Emergency restore path (if cleanup removed too much)
+
+Recover a removed file from the last good commit:
+
+```bash
+git checkout <good-commit-sha> -- <path/to/file>
+```
+
+Or restore the whole repo to a known commit (advanced, destructive):
+
+```bash
+git reset --hard <good-commit-sha>
+git push --force-with-lease origin main
+```
+
+Use the destructive option only with maintainer coordination.
 
 ---
 

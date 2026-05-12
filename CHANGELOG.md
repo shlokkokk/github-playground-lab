@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Fully rewrote `README.md` into a step-by-step Git and GitHub learning lab with beginner to advanced exercises and a two-account open-source simulation guide
+- Added a full maintainer reset playbook in `README.md` and removed trial-only practice artifacts to keep a clean starter state
 
 ## [0.1.0] - 2026-05-09
 

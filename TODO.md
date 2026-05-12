@@ -12,4 +12,3 @@
 - [ ] Add interactive rebase challenge set
 - [ ] Add multi-commit cherry-pick challenge
 - [ ] Add release management simulation
-added contris
